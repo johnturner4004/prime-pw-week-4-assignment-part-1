@@ -254,3 +254,26 @@ console.log(`Array of positive numbers in test array is: ${posArray}`);
 // 11. Pick a problem from Edabit(https://edabit.com/) or
 //     CodeWars(https://www.codewars.com/). Then describe it
 //     here in a comment, write the function, and test it!
+
+/************************************************************************
+** Additive persistance is the number of times the digits of a number  **
+** must be added together until the sum is a single digit number.      **
+** Multiplicative persistance is the number of times the digits of a   **
+** number must be multiplied together before the product is a single   **
+** digit number.                                                       **
+** Write a function that finds both the additive and multiplicative    **
+** persistance of a given number.                                      **
+** https://edabit.com/challenge/vHvu4Wis8RhmQbwXm                      **
+************************************************************************/
+
+// addPer = 0
+let addPer = 0;
+// test if one digit
+
+// add digits of multi digit number
+
+  // increment n
+
+// repeat test
+
+// return addPer
