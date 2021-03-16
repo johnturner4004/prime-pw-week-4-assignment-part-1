@@ -176,7 +176,8 @@ function find(value, array) {
 
     //returns false if not found in loop
     return false;
-  } return false;
+  }
+  return false;
 }
 
 //varaible used to count incrementally number each test
@@ -229,11 +230,11 @@ function sumAll(array) {
   let sum = 0
   // TODO: loop to add items
   for (value of array)
-    sum+= value;
+    sum += value;
   return sum;
 }
 console.log(sumAll(numArray));
-console.log(sumAll([1,1,2,3,5,8,13]));
+console.log(sumAll([1, 1, 2, 3, 5, 8, 13]));
 
 // 10. Function to return a new array of all positive (greater than zero)
 //     numbers contained in an input array. If there are no positive numbers
@@ -241,48 +242,135 @@ console.log(sumAll([1,1,2,3,5,8,13]));
 console.log(`%cQuestion #${question}`, 'background:blue');
 question++;
 
-let testArray = [1,-2,3,-4,5,-6,7,-8,9,0];
+let testArray = [1, -2, 3, -4, 5, -6, 7, -8, 9, 0];
 
 function isPositive(value) {
   return value > 0;
 }
 
 let posArray = testArray.filter(isPositive);
-console.log( `Test array is: ${testArray}`);
+console.log(`Test array is: ${testArray}`);
 console.log(`Array of positive numbers in test array is: ${posArray}`);
 
 // 11. Pick a problem from Edabit(https://edabit.com/) or
 //     CodeWars(https://www.codewars.com/). Then describe it
 //     here in a comment, write the function, and test it!
+console.log(`%cQuestion #${question}`, 'background:blue');
+question++;
 
 /************************************************************************
-** Additive persistance is the number of times the digits of a number  **
-** must be added together until the sum is a single digit number.      **
-** Multiplicative persistance is the number of times the digits of a   **
-** number must be multiplied together before the product is a single   **
-** digit number.                                                       **
-** Write a function that finds both the additive and multiplicative    **
-** persistance of a given number.                                      **
-** https://edabit.com/challenge/vHvu4Wis8RhmQbwXm                      **
-************************************************************************/
+ ** Additive persistance is the number of times the digits of a number  **
+ ** must be added together until the sum is a single digit number.      **
+ ** Multiplicative persistance is the number of times the digits of a   **
+ ** number must be multiplied together before the product is a single   **
+ ** digit number.                                                       **
+ ** Write a function that finds both the additive and multiplicative    **
+ ** persistance of a given number.                                      **
+ ** https://edabit.com/challenge/vHvu4Wis8RhmQbwXm                      **
+ ************************************************************************/
 
-// addPer = 0 to start counting
-let addPer = 0;
+//Additive persistance:
+// test if number is a single digit
+const isSingleDigit = value => ((value.toString()).length === 1) ? true : false;
 
-// test if one digit
-const isSingleDigit = value => ((value.toString()).length === 1) ?  true : false;
-
+/*console.log('test values for isSingleDigit:');
+console.log(isSingleDigit(23));
 console.log(isSingleDigit(3));
-console.log(isSingleDigit(13));
-console.log(isSingleDigit(123));
-console.log(isSingleDigit(1));
-console.log(isSingleDigit(8));
-console.log(isSingleDigit(0));
+console.log(isSingleDigit(213));
+console.log(isSingleDigit(2322));
+console.log(isSingleDigit(256783));
+console.log(isSingleDigit(999999999999999));*/
 
 // add digits of multi digit number
+const addDigits = value => {
+  let sum = 0;
+  let string = value.toString();
+  for (i = 0; i < string.length; i++) {
+    digit = parseInt(string.charAt(i));
+    sum += digit;
+  }
+  return sum;
+};
 
-  // increment n
+/*console.log('test values for addDigits:');
+console.log(addDigits(23));
+console.log(addDigits(3));
+console.log(addDigits(213));
+console.log(addDigits(2322));
+console.log(addDigits(256783));
+console.log(addDigits(999999999999999));*/
 
-// repeat test
+const addPersistance = value => {
+  let addPer = 0;
+  while (isSingleDigit(value) === false) {
+    value = addDigits(value);
+    //advanced addPer
+    addPer++;
+  }
+  // return addPer
+  return addPer;
+};
 
-// return addPer
+/*console.log('test values for addPersistance:');
+console.log(addPersistance(23));
+console.log(addPersistance(3));
+console.log(addPersistance(213));
+console.log(addPersistance(2322));
+console.log(addPersistance(256783));
+console.log(addPersistance(999999999999999));*/
+
+//multiplicative persostance
+
+//fonmula to multiply digits
+const multDigits = value => {
+  let product = 1;
+  let string = value.toString();
+  for (i = 0; i < string.length; i++) {
+    digit = parseInt(string.charAt(i));
+    product *= digit;
+  }
+  return product;
+};
+
+/*console.log('test values for multDigits:');
+console.log(multDigits(23));
+console.log(multDigits(3));
+console.log(multDigits(213));
+console.log(multDigits(2322));
+console.log(multDigits(256783));
+console.log(multDigits(999999999999999));*/
+
+const multPersistance = value => {
+  let multPer = 0;
+  //test if single digit
+  while (isSingleDigit(value) === false) {
+    // multiply digits
+    value = multDigits(value);
+    // add to multPer
+    multPer++;
+  }
+  return multPer;
+};
+
+/*console.log('test values for multPersistance:');
+console.log(multPersistance(23));
+console.log(multPersistance(3));
+console.log(multPersistance(213));
+console.log(multPersistance(2322));
+console.log(multPersistance(256783));
+console.log(multPersistance(999999999999999));*/
+
+const persistance = value => {
+  let addPer = addPersistance(value);
+  let multPer = multPersistance(value);
+  console.log(`The additive and multiplicative persistance of ${value} are:`);
+  console.log(`Additive persistance: ${addPer}`);
+  console.log(`Multiplicative persistance: ${multPer}`);
+};
+
+console.log(persistance(23));
+console.log(persistance(3));
+console.log(persistance(213));
+console.log(persistance(2322));
+console.log(persistance(256783));
+console.log(persistance(999999999999999));
