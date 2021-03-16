@@ -266,9 +266,18 @@ console.log(`Array of positive numbers in test array is: ${posArray}`);
 ** https://edabit.com/challenge/vHvu4Wis8RhmQbwXm                      **
 ************************************************************************/
 
-// addPer = 0
+// addPer = 0 to start counting
 let addPer = 0;
+
 // test if one digit
+const isSingleDigit = value => ((value.toString()).length === 1) ?  true : false;
+
+console.log(isSingleDigit(3));
+console.log(isSingleDigit(13));
+console.log(isSingleDigit(123));
+console.log(isSingleDigit(1));
+console.log(isSingleDigit(8));
+console.log(isSingleDigit(0));
 
 // add digits of multi digit number
 
