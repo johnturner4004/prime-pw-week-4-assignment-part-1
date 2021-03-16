@@ -211,7 +211,12 @@ console.log(`%cQuestion #${question}`, 'background:blue');
 question++;
 
 function isFirstLetter(letter, string) {
-
+  let firstLetter = string.charAt(0);
+  if (letter === firstLetter) {
+    return true;
+  } else {
+    return false;
+  }
 }
 console.log('isFirstLetter - should say true', isFirstLetter('a', 'apple'));
 console.log('isFirstLetter - should say false', isFirstLetter('z', 'apple'));
