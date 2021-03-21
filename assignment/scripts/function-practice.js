@@ -64,7 +64,7 @@ function multiplyThree(number) {
   }
 }
 
-//varaible used to count incrementally number each test
+//varaible used to incrementally number tests in console
 let test = 1;
 
 //tests various possible input values
@@ -89,18 +89,18 @@ question++;
 function isPositive(number) {
   //Tests to only accept numbers as input to prevent errors
   if (typeof number === 'number') {
-    //Determins if number is positive
+    //nested if function to determint if the number is positive
     if (number > 0) {
       return true;
     } else {
       return false;
-    }
+    } //end of nested if function
   } else {
     return 'Invalid input';
   }
 }
 
-//varaible used to count incrementally number each test
+//varaible used to incrementally number each test
 test = 1;
 
 //tests various possible input values
